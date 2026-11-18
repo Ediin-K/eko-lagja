@@ -29,7 +29,7 @@ Each member owns one module: they describe it in the SAD, design it in the DDD a
 
 | Document | Status | Location |
 |---|---|---|
-| Conceptual model | Done | [diagram](docs/Conceptual_Model_EkoLagja.drawio), [image](docs/Conceptual_Model_EkoLagja.png), [description](docs/Conceptual_Model_EkoLagja.md) |
+| Conceptual model | Done | [diagram](docs/Conceptual_Model_EkoLagja.drawio), [description](docs/Conceptual_Model_EkoLagja.md) |
 | Software Architecture Document (SAD) | In progress | `docs/` |
 | Detailed Design Document (DDD) | Not started | `docs/` |
 
