@@ -1,66 +1,65 @@
 # EkoLagja
 
-Web aplikacion për raportimin dhe menaxhimin e mbeturinave në lagjet e Prishtinës.
+A digital platform that connects residents with their municipality: notices, complaints, polls and neighbourly help.
 
-Qytetarët raportojnë probleme me mbeturinat (deponi ilegale, kontejnerë të mbushur ose të dëmtuar, djegie mbeturinash) me foto dhe lokacion GPS. Kompania e pastrimit i shqyrton raportet, ua cakton ekipeve në terren dhe i përcjell deri në zgjidhje. Banorët marrin njoftime për statusin e raporteve dhe për orarin e grumbullimit, ndërsa menaxhmenti dhe Komuna i përdorin statistikat sipas lagjeve.
+The municipality publishes notices for neighbourhoods and runs polls to hear what residents think. Residents submit complaints to the municipality and follow how they are handled, while neighbours can ask for or offer help within their neighbourhood.
 
-Projekt grupor për lëndën Dizajni i Sistemit të Softuerit, Kolegji UBT, 2026.
+Group project for the Software System Design course (Dizajni i Sistemit të Softuerit), UBT College, 2026.
 
-## Anëtarët e grupit
+## Team
 
-- Edin Kamberi (menaxher i projektit)
+- Edin Kamberi (project manager)
 - Ediar Halili
 - Erjon Demiri
 - Endrit Abdullahu
 
-## Tabela e përgjegjësive
+## Responsibilities
 
-Çdo anëtar është përgjegjës për një modul: e përshkruan në SAD, e dizajnon në DDD dhe e implementon në të gjitha shtresat e kodit.
+Each member owns one module: they describe it in the SAD, design it in the DDD and implement it in every layer of the code.
 
-| Moduli | Anëtari | Përgjegjësia | Paketat / klasat |
+| Module | Member | Responsibility | Packages / classes |
 |---|---|---|---|
-| Raportimi | Edin Kamberi | Dërgimi i raportit me kategori, foto, lokacion GPS dhe përshkrim; raportimi anonim; konfirmimi „edhe unë e kam parë këtë” | Caktohen në DDD |
-| Menaxhimi i rasteve | Ediar Halili | Paneli i dispeçerit, caktimi i raporteve te ekipet, statusi i raportit, pamja e ekipit në terren | Caktohen në DDD |
-| Orari dhe njoftimet | Erjon Demiri | Orari i grumbullimit sipas lagjes, ndjekja e lagjeve, preferencat dhe dërgimi i njoftimeve me email ose SMS | Caktohen në DDD |
-| Analitika dhe harta | Endrit Abdullahu | Harta interaktive, harta e nxehtësisë, statistikat sipas lagjeve dhe kategorive, eksporti | Caktohen në DDD |
-| Puna e përbashkët | I gjithë grupi | Modeli konceptual, skeleti i arkitekturës, autentifikimi dhe konfigurimi | Caktohen në DDD |
+| Complaints | Edin Kamberi | Submitting a complaint to the municipality, handling by an official, complaint status and the official response | Defined in the DDD |
+| Neighbourly Help | Ediar Halili | Posts requesting or offering help between neighbours, and residents' responses | Defined in the DDD |
+| Notices | Erjon Demiri | Publishing official notices for one or more neighbourhoods, urgent notices and expiry | Defined in the DDD |
+| Polls | Endrit Abdullahu | Creating polls with options, residents voting, and results | Defined in the DDD |
+| Shared work | Whole group | Conceptual model, architecture skeleton, authentication and configuration | Defined in the DDD |
 
-## Dokumentimi
+## Documentation
 
-| Dokumenti | Statusi | Vendndodhja |
+| Document | Status | Location |
 |---|---|---|
-| Modeli konceptual | Përfunduar | [diagrami](docs/Modeli_Konceptual_EkoLagja.drawio), [figura](docs/Modeli_Konceptual_EkoLagja.png), [përshkrimi](docs/Modeli_Konceptual_EkoLagja.md) |
-| Dokumenti i arkitekturës (SAD) | Në punë | `docs/` |
-| Dokumenti i dizajnit të detajuar (DDD) | Pa filluar | `docs/` |
+| Conceptual model | Done | [diagram](docs/Conceptual_Model_EkoLagja.drawio), [image](docs/Conceptual_Model_EkoLagja.png), [description](docs/Conceptual_Model_EkoLagja.md) |
+| Software Architecture Document (SAD) | In progress | `docs/` |
+| Detailed Design Document (DDD) | Not started | `docs/` |
 
-## Teknologjitë
+## Technologies
 
 - **Backend:** Java 17, Spring Boot, Maven
 - **Frontend:** React (Vite)
-- **Baza e të dhënave:** H2 gjatë zhvillimit, MySQL në fazën e implementimit
-- **Hartat:** Leaflet dhe OpenStreetMap
+- **Database:** H2 during development, MySQL for the implementation phase
 
-## Struktura e repozitorit
+## Repository structure
 
 ```
 .
 ├── backend/     Spring Boot (Java, Maven)
 ├── frontend/    React (Vite)
-└── docs/        Modeli konceptual, SAD dhe DDD
+└── docs/        Conceptual model, SAD and DDD
 ```
 
-Kodi aktual është skelet fillestar. Struktura e paketave dhe klasat do të ndryshojnë sipas DDD-së.
+The current code is an early skeleton. The package structure and classes will change to follow the DDD.
 
-## Nisja gjatë zhvillimit
+## Running in development
 
-Backend (http://localhost:8080, me konsolën e H2 te `/h2-console`):
+Backend (http://localhost:8080, with the H2 console at `/h2-console`):
 
 ```bash
 cd backend
 ./mvnw spring-boot:run
 ```
 
-Frontend (http://localhost:5173, i dërgon kërkesat `/api` te backend-i):
+Frontend (http://localhost:5173, forwards `/api` requests to the backend):
 
 ```bash
 cd frontend
