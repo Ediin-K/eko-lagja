@@ -1,138 +1,74 @@
-# Notes for the architecture section of the SAD
+# Architectural style and placement of modules
 
-These are my notes, not the final text. I write the real section from them in my own words.
+## 1. Chosen style
 
+EkoLagja uses hexagonal architecture, also known as ports and adapters, organised as a modular monolith.
 
-## 1. What we decided
+In a hexagonal architecture the business logic of the application sits at the centre and does not depend on anything around it. The centre, called the domain, contains the concepts of the problem and their rules: a complaint, its status and how that status may change, a poll and the rule that a resident votes only once. Around the domain there are ports, which are interfaces that describe what the application offers to the outside world and what it needs from it. The technical parts of the system, such as the REST controllers used by the React frontend and the code that stores data in PostgreSQL, are adapters that plug into these ports.
 
-We use hexagonal architecture, also called "ports and adapters".
+The dependency rule is what holds the structure together: adapters depend on ports, ports and application services depend on the domain, and the domain depends on nothing. The domain does not know that a web interface or a database exists.
 
-The whole app is still one Spring Boot program with one MySQL database. Inside it, the code is split into 4 modules (Complaints, Help, Notices, Polls) plus a shared part. That setup is called a "modular monolith": one program, but with clear walls between the modules.
+The whole system is built and deployed as one Spring Boot application with one PostgreSQL database. Inside that application the code is divided into four business modules, Complaints, Neighbourly Help, Notices and Polls, and a shared part. Each module is a small hexagon of its own, and the boundaries between modules are strict. This combination of one deployable application with clearly separated modules is called a modular monolith.
 
-The teacher allowed three styles: layered, microservices, hexagonal. We picked hexagonal.
+## 2. Why this style suits EkoLagja
 
+EkoLagja connects residents with their municipality, so the platform handles official information: complaints that the municipality must answer, notices that residents rely on, and polls whose results should be trustworthy. The most important requirement on the architecture is therefore that the rules of the system are correct and stay correct as the system grows.
 
-## 2. The idea in simple words
+Hexagonal architecture keeps those rules in one place. A rule such as "a rejected complaint cannot be reopened" or "a resident can vote only once in a poll" is written in plain Java inside the domain, separate from controllers, SQL and framework code. Because the domain has no technical dependencies, these rules can be tested with ordinary unit tests, without starting a server or a database. This makes it practical to check the most important behaviour of the platform often.
 
-Think of each module as having three rings:
+The style also protects the system from changes in technology. A municipality may later want its own login system, another database, or a mobile application next to the website. In each case only an adapter changes or is added. A mobile application, for example, would be one more adapter calling the same ports as the React frontend, and the rules in the domain would stay untouched.
 
-- The centre (domain): the real rules of the app, written in plain Java. For example "a rejected complaint can't be reopened" or "a resident can vote only once in a poll". This part knows nothing about Spring, the database or the website.
-- Ports: interfaces (Java interfaces) around the centre. Some ports are for others to call us, like "submit a complaint". Some are for things we need from outside, like "save this complaint".
-- Adapters: the real technical code that plugs into the ports. The REST controller that the React app calls is an adapter. The code that saves to MySQL is also an adapter.
+Every change to the data passes through a use case in the application layer. That gives one clear place to check whether the user is allowed to perform the action and to record what happened. For complaints this is where each status change is stored in the complaint's history, which matters for a public institution that must be able to show how a complaint was handled.
 
-The rule: the outside depends on the inside, never the other way around. The centre never imports anything from Spring or the database.
+Finally, the style fits the way our team works. Each of the four members owns one module, and in a hexagonal structure a module contains everything from its domain classes to its controllers. Each member can therefore work on a complete part of the system with little interference from the others, and the inbound and outbound ports of a module correspond directly to the provided and required services described in the module's DeSCRIPTR specification.
 
+## 3. Placement of the modules
 
-## 3. Why this is a good fit (points to explain in my own words)
+Each module has the same internal structure:
 
-- The important rules stay in one clean place, so they're easy to check and test without starting a database.
-- If the municipality later wants a different database, its own login system or a mobile app, we only swap or add an adapter. The rules stay the same.
-- Each module clearly shows what it offers and what it needs. That is exactly the "I" (interface) part of DeSCRIPTR, so the SAD and the code match.
-- Every change goes through one use case, so it's easy to check who is allowed to do it and to keep a history (StatusChange). Good for a municipal system.
-- Each of us owns one module from top to bottom, so our work and our commits stay separate.
-
-
-## 4. What real projects do (from the research)
-
-I looked at real public projects: OpenTripPlanner, Eclipse EDC, ddd-by-examples/library, buckpal and the Spring Modulith examples. Things they have in common:
-
-- They split the code by module first, and put the hexagon inside each module.
-- Each module has a small "front door" (a public class plus the events it sends). Other modules may only use that front door. Everything else is private to the module.
-- They keep the database classes separate from the real classes. Example: Complaint is the real class, ComplaintJpaEntity is the database version, and a small mapper converts between them. This keeps database code out of the centre.
-- They don't overdo ports, and they name them after real things. Example: "Complaints" instead of "ComplaintRepositoryPort".
-- They have tests that fail if someone breaks the module walls.
-- Their architecture write-ups are short (about 2 to 4 pages), mostly normal paragraphs, with a couple of real diagrams.
-
-
-## 5. Folder structure
-
-Each module looks the same. Example for Complaints (mine):
-
-    complaints/
-        ComplaintsApi         the front door other modules use
-        domain/               Complaint, ComplaintCategory, StatusChange, OfficialResponse
+    <module>/
+        <Module>Api          the module's public entry point for other modules
+        domain/              concepts and business rules
         application/
-            port/in/          what we offer: SubmitComplaintUseCase, ChangeComplaintStatusUseCase ...
-            port/out/         what we need: Complaints (saving), ResidentDirectory (finding residents)
-            service/          the code that does the use cases
+            port/in/         use cases the module offers
+            port/out/        what the module needs from outside
+            service/         implementation of the use cases
         adapter/
-            in/web/           ComplaintController (REST for the React app)
-            out/persistence/  saving to MySQL: ComplaintJpaEntity, ComplaintMapper ...
+            in/web/          REST controllers used by the frontend
+            out/persistence/ storage in PostgreSQL
 
-The other modules have the same shape:
-- help/ (Ediar)
-- notices/ (Erjon)
-- polls/ (Endrit)
+Domain classes are kept separate from the classes used for storage. For example, Complaint is the domain class, while ComplaintJpaEntity is the version stored in the database, and a mapper converts between them. This keeps database details out of the domain.
 
-shared/ has users, neighbourhoods, departments, login and settings.
+The concepts of the conceptual model are distributed over the modules as follows:
 
-Naming, in short:
-- Things we offer end in UseCase.
-- The code behind them ends in Service.
-- REST classes end in Controller.
-- Database classes end in JpaEntity, and the converters end in Mapper.
+| Module           | Owner            | Domain concepts                                                             |
+|------------------|------------------|-----------------------------------------------------------------------------|
+| Complaints       | Edin Kamberi     | Complaint, ComplaintCategory, StatusChange, OfficialResponse, InternalNote  |
+| Neighbourly Help | Ediar Halili     | HelpPost, HelpResponse                                                      |
+| Notices          | Erjon Demiri     | Notice, Attachment                                                          |
+| Polls            | Endrit Abdullahu | Poll, PollOption, Vote                                                      |
+| Shared part      | Whole group      | User, Resident, MunicipalOfficial, Administrator, Department, Neighbourhood |
 
+The shared part is not counted as a module. It contains users and roles, login, the administration of neighbourhoods, departments and staff accounts, and the configuration of the application.
 
-## 6. What each module offers and needs (first idea, everyone can rename theirs)
+The Complaints module is shown in detail in the diagram [Complaints_Module_Hexagon.drawio](Complaints_Module_Hexagon.drawio). A resident submits a complaint from the React application, the request reaches ComplaintController, which calls the SubmitComplaint use case. ComplaintService carries out the use case: it creates the Complaint in the domain, asks the shared part through the ResponsibleStaff port which official is responsible for the complaint's category and neighbourhood, and saves the complaint through the Complaints port, which is implemented by the persistence adapter. The other three modules follow the same structure with their own concepts.
 
-Complaints
-- Offers: submit, assign to an official, change status, give official answer, list complaints
-- Needs: saving complaints, finding residents, storing photos (from Notices)
+## 4. Communication between modules
 
-Neighbourly Help
-- Offers: publish a post, answer a post, accept or decline an answer, close a post, list posts
-- Needs: saving posts, finding residents
+A module never uses another module's domain classes, database tables or internal services directly. Modules communicate in two ways.
 
-Notices
-- Offers: publish a notice, list notices, notify residents, store attachments
-- Needs: saving notices, storing files, finding neighbourhoods
+When a module needs an answer from another module, it calls that module's public entry point. Complaints, for example, asks the shared part for the official responsible for a neighbourhood and a category, and uses Notices to store the photos attached to a complaint.
 
-Polls
-- Offers: create a poll, vote, close a poll, show results
-- Needs: saving polls, finding residents
+When a module only needs to announce that something has happened, it publishes an event and does not care who reacts to it. When the status of a complaint changes, Complaints publishes a ComplaintStatusChanged event, and Notices reacts by notifying the resident who submitted it. In the same way, Neighbourly Help announces that a help post has received a response, and Polls announces that a poll has opened or closed. Notices is the module that turns these events into notifications for residents.
 
+This means every module offers or uses at least one service of another module, while the modules stay loosely coupled. Complaints, Neighbourly Help and Polls do not depend on Notices at all; they only publish events.
 
-## 7. How modules talk to each other
+The boundaries are checked automatically. A test built with Spring Modulith verifies that modules only use each other's public entry points, and an ArchUnit test verifies that domain classes do not depend on Spring, the persistence layer or any adapter. If someone breaks these rules, the build fails.
 
-Two ways:
+## 5. Alternatives considered
 
-1. Asking something: call the other module's front door directly. Example: Complaints asks Notices to store a photo.
-2. Telling something happened: send an event. The module that sends it doesn't care who listens.
-   - A complaint's status changes → Notices tells the resident.
-   - Someone answers a help post → Notices tells the post's author.
-   - A poll opens or closes → Notices announces it and later shows the results.
+Two other styles were considered: a layered architecture and microservices.
 
-This also covers the course rule that every module must use or offer something to another module.
+A layered architecture divides the code into presentation, business logic and data access, where each layer calls the one below it. It is simple and familiar, but the business layer depends directly on the data layer. In practice this means business rules become mixed with database code, are harder to test in isolation, and the interfaces between modules are not explicit. For a system whose main value is the correctness of its rules, this was the weaker option.
 
-
-## 8. How we make sure nobody breaks the rules
-
-- Spring Modulith has a test that checks modules only use each other's front door.
-- One ArchUnit test checks that the centre (domain) doesn't use Spring or database code.
-- If someone breaks a rule, the build fails.
-
-
-## 9. Why not the other two styles
-
-- Layered: the business code depends directly on the database code, so rules and database code get mixed together. It's harder to test and the module boundaries aren't clear.
-- Microservices: every module would be its own program with its own database, plus a gateway and a message system. That's a lot of extra work and moving parts for an app this size and a team of four. With our setup the walls between modules are just as clear, and a module can still be split out later if ever needed.
-
-
-## 10. Still to make
-
-- Diagram 1 (draw.io): the 4 modules plus shared, with arrows for calls and events.
-- Diagram 2 (draw.io): the inside of one module (Complaints): controller → use cases → domain → saving → MySQL.
-- Maybe short decision notes, one page each:
-  - why hexagonal and not layered or microservices
-  - why events for notifications
-  - why separate database classes
-
-
-## Links
-
-- buckpal: https://github.com/thombergs/buckpal
-- ddd-by-examples/library: https://github.com/ddd-by-examples/library
-- Spring Modulith: https://docs.spring.io/spring-modulith/reference/fundamentals.html
-- modular-monolith-with-ddd: https://github.com/kgrzybek/modular-monolith-with-ddd
-- OpenTripPlanner: https://github.com/opentripplanner/OpenTripPlanner/blob/dev-2.x/ARCHITECTURE.md
-- Eclipse EDC decision records: https://github.com/eclipse-edc/Connector/tree/main/docs/developer/decision-records
+A microservice architecture would turn each module into a separate application with its own database, connected through an API gateway and a message broker. This offers independent deployment and scaling, but it brings considerable operational cost: several applications to run, data spread over several databases, no foreign keys between modules, and failures in the network between services. EkoLagja serves one municipality and is built by a team of four, so these costs are not justified. The modular monolith keeps boundaries between modules that are just as clear, and if one module ever needs to become a separate service, its ports make that step possible without rewriting it.
