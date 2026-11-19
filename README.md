@@ -19,11 +19,11 @@ Each member owns one module: they describe it in the SAD, design it in the DDD a
 
 | Module | Member | Responsibility | Packages / classes |
 |---|---|---|---|
-| Complaints | Edin Kamberi | Submitting a complaint to the municipality, handling by an official, complaint status and the official response | Defined in the DDD |
+| Complaints | Edin Kamberi | Submitting a complaint to the municipality, handling by an official, complaint status and its history, internal staff notes and the official response | Defined in the DDD |
 | Neighbourly Help | Ediar Halili | Posts requesting or offering help between neighbours, and residents' responses | Defined in the DDD |
 | Notices | Erjon Demiri | Publishing official notices for one or more neighbourhoods, urgent notices and expiry | Defined in the DDD |
 | Polls | Endrit Abdullahu | Creating polls with options, residents voting, and results | Defined in the DDD |
-| Shared work | Whole group | Conceptual model, architecture skeleton, authentication and configuration | Defined in the DDD |
+| Shared work | Whole group | Conceptual model, architecture skeleton, authentication and roles, administration (neighbourhoods, departments, staff accounts) and configuration | Defined in the DDD |
 
 ## Documentation
 
@@ -37,7 +37,7 @@ Each member owns one module: they describe it in the SAD, design it in the DDD a
 
 - **Backend:** Java 17, Spring Boot, Maven
 - **Frontend:** React (Vite)
-- **Database:** H2 during development, MySQL for the implementation phase
+- **Database:** PostgreSQL (the current skeleton still uses an in-memory H2 database until the database setup is done)
 
 ## Repository structure
 
