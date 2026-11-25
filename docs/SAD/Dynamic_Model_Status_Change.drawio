@@ -1,0 +1,276 @@
+<mxfile host="Electron" version="28.2.8">
+  <diagram name="Modeli dinamik – ndryshimi i statusit" id="dyn">
+    <mxGraphModel dx="1400" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t1" value="Zyrtari" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="35" y="40" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t2" value="Ankesat" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="265" y="40" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t3" value="Complaint" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#2E6B3A;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="495" y="40" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t4" value="StatusChange" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#2E6B3A;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="725" y="40" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t5" value="Njoftimet" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="955" y="40" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t6" value="Banori" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1185" y="40" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" value="Zyrtari" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="35" y="670" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" value="Ankesat" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="265" y="670" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" value="Complaint" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#2E6B3A;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="495" y="670" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="b4" value="StatusChange" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#2E6B3A;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="725" y="670" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="b5" value="Njoftimet" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="955" y="670" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="b6" value="Banori" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1185" y="670" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="l1" style="endArrow=none;html=1;rounded=0;edgeStyle=none;strokeColor=#A0A0A0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="t1" target="b1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2" style="endArrow=none;html=1;rounded=0;edgeStyle=none;strokeColor=#A0A0A0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="t2" target="b2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3" style="endArrow=none;html=1;rounded=0;edgeStyle=none;strokeColor=#A0A0A0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="t3" target="b3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l4" style="endArrow=none;html=1;rounded=0;edgeStyle=none;strokeColor=#A0A0A0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="t4" target="b4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l5" style="endArrow=none;html=1;rounded=0;edgeStyle=none;strokeColor=#A0A0A0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="t5" target="b5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l6" style="endArrow=none;html=1;rounded=0;edgeStyle=none;strokeColor=#A0A0A0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="t6" target="b6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="alt" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;width=50;height=24;dashed=1;fillColor=#555555;swimlaneFillColor=none;strokeColor=#A0A0A0;fontColor=#FFFFFF;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="40" y="250" width="1320" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="altdiv" style="endArrow=none;html=1;rounded=0;edgeStyle=none;dashed=1;strokeColor=#A0A0A0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="40" y="530" as="sourcePoint" />
+            <mxPoint x="1360" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g1" value="[ndryshim i lejuar]" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="355" y="256" width="320" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="g2" value="[ndryshim i palejuar ose rihapje pa shënim]" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="355" y="536" width="320" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="m1" value="Kërkon ndryshimin e statusit&lt;br&gt;(statusi i ri, shënimi)" style="endArrow=block;endFill=1;html=1;rounded=0;edgeStyle=none;verticalAlign=bottom;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;strokeColor=#A0A0A0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="160" as="sourcePoint" />
+            <mxPoint x="340" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m2" value="Kontrollon nëse ndryshimi lejohet" style="endArrow=block;endFill=1;html=1;rounded=0;edgeStyle=none;verticalAlign=bottom;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;strokeColor=#A0A0A0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="220" as="sourcePoint" />
+            <mxPoint x="570" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3" value="Krijon regjistrimin e ndryshimit" style="endArrow=block;endFill=1;html=1;rounded=0;edgeStyle=none;verticalAlign=bottom;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;strokeColor=#A0A0A0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="570" y="320" as="sourcePoint" />
+            <mxPoint x="800" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m4" value="Publikon ngjarjen ComplaintStatusChanged" style="endArrow=open;endFill=0;endSize=10;html=1;rounded=0;edgeStyle=none;verticalAlign=bottom;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;strokeColor=#A0A0A0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="380" as="sourcePoint" />
+            <mxPoint x="1030" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m5" value="Konfirmon ndryshimin" style="endArrow=block;endFill=1;html=1;rounded=0;edgeStyle=none;verticalAlign=bottom;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;strokeColor=#A0A0A0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="440" as="sourcePoint" />
+            <mxPoint x="110" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m6" value="Njofton për statusin e ri" style="endArrow=block;endFill=1;html=1;rounded=0;edgeStyle=none;verticalAlign=bottom;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;strokeColor=#A0A0A0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1030" y="500" as="sourcePoint" />
+            <mxPoint x="1260" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m7" value="Refuzon ndryshimin" style="endArrow=block;endFill=1;html=1;rounded=0;edgeStyle=none;verticalAlign=bottom;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;strokeColor=#A0A0A0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="600" as="sourcePoint" />
+            <mxPoint x="110" y="600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="k1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2E6B3A;strokeColor=#A0A0A0;" parent="1" vertex="1">
+          <mxGeometry x="40" y="752" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="k1t" value="Domeni" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="68" y="748" width="90" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="k2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=#A0A0A0;" parent="1" vertex="1">
+          <mxGeometry x="180" y="752" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="k2t" value="Moduli Ankesat (aplikacioni)" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="208" y="748" width="220" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="k3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;" parent="1" vertex="1">
+          <mxGeometry x="450" y="752" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="k3t" value="Jashtë modulit (aktorë, module të tjera)" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="478" y="748" width="320" height="28" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Dynamic model – status change" id="dyn-en">
+    <mxGraphModel dx="1400" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="en-0" />
+        <mxCell id="en-1" parent="en-0" />
+        <mxCell id="en-t1" value="Municipal official" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="en-1" vertex="1">
+          <mxGeometry x="35" y="40" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="en-t2" value="Complaints module" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="en-1" vertex="1">
+          <mxGeometry x="265" y="40" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="en-t3" value="Complaint" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#2E6B3A;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="en-1" vertex="1">
+          <mxGeometry x="495" y="40" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="en-t4" value="StatusChange" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#2E6B3A;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="en-1" vertex="1">
+          <mxGeometry x="725" y="40" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="en-t5" value="Notices module" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="en-1" vertex="1">
+          <mxGeometry x="955" y="40" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="en-t6" value="Resident" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="en-1" vertex="1">
+          <mxGeometry x="1185" y="40" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="en-b1" value="Municipal official" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="en-1" vertex="1">
+          <mxGeometry x="35" y="670" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="en-b2" value="Complaints module" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="en-1" vertex="1">
+          <mxGeometry x="265" y="670" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="en-b3" value="Complaint" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#2E6B3A;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="en-1" vertex="1">
+          <mxGeometry x="495" y="670" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="en-b4" value="StatusChange" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#2E6B3A;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="en-1" vertex="1">
+          <mxGeometry x="725" y="670" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="en-b5" value="Notices module" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="en-1" vertex="1">
+          <mxGeometry x="955" y="670" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="en-b6" value="Resident" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=14;fontColor=#FFFFFF;" parent="en-1" vertex="1">
+          <mxGeometry x="1185" y="670" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="en-l1" style="endArrow=none;html=1;rounded=0;edgeStyle=none;strokeColor=#A0A0A0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="en-1" source="en-t1" target="en-b1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en-l2" style="endArrow=none;html=1;rounded=0;edgeStyle=none;strokeColor=#A0A0A0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="en-1" source="en-t2" target="en-b2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en-l3" style="endArrow=none;html=1;rounded=0;edgeStyle=none;strokeColor=#A0A0A0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="en-1" source="en-t3" target="en-b3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en-l4" style="endArrow=none;html=1;rounded=0;edgeStyle=none;strokeColor=#A0A0A0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="en-1" source="en-t4" target="en-b4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en-l5" style="endArrow=none;html=1;rounded=0;edgeStyle=none;strokeColor=#A0A0A0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="en-1" source="en-t5" target="en-b5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en-l6" style="endArrow=none;html=1;rounded=0;edgeStyle=none;strokeColor=#A0A0A0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="en-1" source="en-t6" target="en-b6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="en-alt" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;width=50;height=24;dashed=1;fillColor=#555555;swimlaneFillColor=none;strokeColor=#A0A0A0;fontColor=#FFFFFF;fontSize=13;" parent="en-1" vertex="1">
+          <mxGeometry x="40" y="250" width="1320" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="en-altdiv" style="endArrow=none;html=1;rounded=0;edgeStyle=none;dashed=1;strokeColor=#A0A0A0;" parent="en-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="40" y="530" as="sourcePoint" />
+            <mxPoint x="1360" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="en-g1" value="[change allowed]" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;" parent="en-1" vertex="1">
+          <mxGeometry x="355" y="256" width="320" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="en-g2" value="[change not allowed or reopening without a note]" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;" parent="en-1" vertex="1">
+          <mxGeometry x="355" y="536" width="320" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="en-m1" value="Requests a status change&lt;br&gt;(new status, note)" style="endArrow=block;endFill=1;html=1;rounded=0;edgeStyle=none;verticalAlign=bottom;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;strokeColor=#A0A0A0;" parent="en-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="160" as="sourcePoint" />
+            <mxPoint x="340" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="en-m2" value="Checks whether the change is allowed" style="endArrow=block;endFill=1;html=1;rounded=0;edgeStyle=none;verticalAlign=bottom;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;strokeColor=#A0A0A0;" parent="en-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="220" as="sourcePoint" />
+            <mxPoint x="570" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="en-m3" value="Creates the change record" style="endArrow=block;endFill=1;html=1;rounded=0;edgeStyle=none;verticalAlign=bottom;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;strokeColor=#A0A0A0;" parent="en-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="570" y="320" as="sourcePoint" />
+            <mxPoint x="800" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="en-m4" value="Publishes the ComplaintStatusChanged event" style="endArrow=open;endFill=0;endSize=10;html=1;rounded=0;edgeStyle=none;verticalAlign=bottom;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;strokeColor=#A0A0A0;" parent="en-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="380" as="sourcePoint" />
+            <mxPoint x="1030" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="en-m5" value="Confirms the change" style="endArrow=block;endFill=1;html=1;rounded=0;edgeStyle=none;verticalAlign=bottom;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;strokeColor=#A0A0A0;" parent="en-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="440" as="sourcePoint" />
+            <mxPoint x="110" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="en-m6" value="Notifies of the new status" style="endArrow=block;endFill=1;html=1;rounded=0;edgeStyle=none;verticalAlign=bottom;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;strokeColor=#A0A0A0;" parent="en-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1030" y="500" as="sourcePoint" />
+            <mxPoint x="1260" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="en-m7" value="Rejects the change" style="endArrow=block;endFill=1;html=1;rounded=0;edgeStyle=none;verticalAlign=bottom;fontSize=13;fontColor=#FFFFFF;labelBackgroundColor=#333333;strokeColor=#A0A0A0;" parent="en-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="600" as="sourcePoint" />
+            <mxPoint x="110" y="600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="en-k1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2E6B3A;strokeColor=#A0A0A0;" parent="en-1" vertex="1">
+          <mxGeometry x="40" y="752" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="en-k1t" value="Domain" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;" parent="en-1" vertex="1">
+          <mxGeometry x="68" y="748" width="90" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="en-k2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=#A0A0A0;" parent="en-1" vertex="1">
+          <mxGeometry x="180" y="752" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="en-k2t" value="Complaints module (application)" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;" parent="en-1" vertex="1">
+          <mxGeometry x="208" y="748" width="240" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="en-k3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;" parent="en-1" vertex="1">
+          <mxGeometry x="470" y="752" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="en-k3t" value="Outside the module (actors, other modules)" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;" parent="en-1" vertex="1">
+          <mxGeometry x="498" y="748" width="340" height="28" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

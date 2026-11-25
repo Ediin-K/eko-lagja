@@ -4,5 +4,11 @@
     "IN_PROGRESS": "Në proces",
     "RESOLVED": "Zgjidhur",
     "REJECTED": "Refuzuar"
+  },
+  "home": {
+    "tag": "Ankesa jote",
+    "sent": "Dërguar {{when}}",
+    "progress": "Gjendja e ankesës",
+    "response": "Përgjigja e komunës: "
   }
 }

@@ -1,0 +1,47 @@
+{
+  "resident": {
+    "firstName": "Arta",
+    "neighbourhood": "Dardania"
+  },
+  "notices": {
+    "41": {
+      "title": "Water cut",
+      "content": "Because of work on the network, water is cut on Agim Ramadani street and the streets nearby."
+    },
+    "42": {
+      "title": "Street cleaning on Saturday morning",
+      "content": "Cleaning teams will go through every street in the neighbourhood. Please do not park along the kerb."
+    }
+  },
+  "complaints": {
+    "17": {
+      "title": "Street light not working",
+      "address": "Rr. Rexhep Luci 14",
+      "response": "The street lighting team is working on it."
+    }
+  },
+  "polls": {
+    "8": {
+      "question": "Where should the new playground go?",
+      "options": {
+        "81": "In the park next to the school",
+        "82": "At the neighbourhood square",
+        "83": "Near the bus stop"
+      }
+    }
+  },
+  "helpPosts": {
+    "23": {
+      "title": "Help needed with the weekly shopping",
+      "description": "A neighbour in entrance B is looking for someone to help on Saturday morning.",
+      "place": "Entrance B",
+      "authorInitial": "B"
+    },
+    "19": {
+      "title": "Help with the garden",
+      "description": "I am looking for someone to help me plant flowers before winter.",
+      "place": "Entrance A",
+      "authorInitial": "A"
+    }
+  }
+}

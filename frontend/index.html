@@ -4,7 +4,22 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Eko Lagja</title>
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#1E7A4C" />
+    <script>
+      (function () {
+        var theme
+        try {
+          theme = localStorage.getItem('ekolagja-theme')
+        } catch (error) {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        document.documentElement.dataset.theme = theme
+        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#123322' : '#1E7A4C'
+      })()
+    </script>
+    <title>EkoLagja</title>
   </head>
   <body>
     <div id="root"></div>

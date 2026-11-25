@@ -1,0 +1,22 @@
+.band {
+  position: relative;
+  padding-top: var(--bar-height);
+  padding-bottom: 34px;
+  color: var(--hero-ink);
+  background-color: var(--hero-bg);
+  background-image:
+    linear-gradient(112deg, transparent 0 63%, var(--hero-road) 63% 65.5%, transparent 65.5%),
+    linear-gradient(22deg, transparent 0 34%, var(--hero-road) 34% 35.8%, transparent 35.8%),
+    repeating-linear-gradient(22deg, var(--hero-line) 0 1.5px, transparent 1.5px 38px),
+    repeating-linear-gradient(112deg, var(--hero-line) 0 1.5px, transparent 1.5px 54px);
+}
+
+.band :focus-visible {
+  outline-color: var(--hero-ink);
+}
+
+@media (min-width: 960px) {
+  .band {
+    padding-bottom: 64px;
+  }
+}

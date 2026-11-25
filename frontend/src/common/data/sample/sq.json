@@ -1,0 +1,47 @@
+{
+  "resident": {
+    "firstName": "Arta",
+    "neighbourhood": "Dardania"
+  },
+  "notices": {
+    "41": {
+      "title": "Ndërprerje e ujit",
+      "content": "Për shkak të punimeve në rrjet, uji ndërpritet në Rr. Agim Ramadani dhe në rrugët përreth."
+    },
+    "42": {
+      "title": "Pastrimi i rrugëve të shtunën në mëngjes",
+      "content": "Ekipet e pastrimit kalojnë nëpër të gjitha rrugët e lagjes. Mos i parkoni makinat buzë rrugës."
+    }
+  },
+  "complaints": {
+    "17": {
+      "title": "Ndriçimi publik nuk punon",
+      "address": "Rr. Rexhep Luci 14",
+      "response": "Ekipi i ndriçimit publik e ka marrë në punë."
+    }
+  },
+  "polls": {
+    "8": {
+      "question": "Ku të ndërtohet këndi i ri i lojërave?",
+      "options": {
+        "81": "Në parkun pranë shkollës",
+        "82": "Te sheshi i lagjes",
+        "83": "Pranë stacionit të autobusit"
+      }
+    }
+  },
+  "helpPosts": {
+    "23": {
+      "title": "Kërkohet ndihmë me pazarin e javës",
+      "description": "Një fqinj në hyrjen B kërkon dikë që ta ndihmojë të shtunën në mëngjes.",
+      "place": "Hyrja B",
+      "authorInitial": "B"
+    },
+    "19": {
+      "title": "Ndihmë me kopshtin",
+      "description": "Kërkoj dikë që të më ndihmojë të mbjell lulet para dimrit.",
+      "place": "Hyrja A",
+      "authorInitial": "A"
+    }
+  }
+}

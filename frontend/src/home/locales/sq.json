@@ -1,0 +1,45 @@
+{
+  "greeting": {
+    "morning": "Mirëmëngjes",
+    "afternoon": "Mirëdita",
+    "evening": "Mirëmbrëma",
+    "withName": "{{greeting}}, {{name}}"
+  },
+  "neighbourhood": "Lagjja {{name}}",
+  "report": {
+    "title": "Raporto një problem",
+    "examples": "Ndriçim, rrugë, ujë, mbeturina, parqe"
+  },
+  "shortcuts": "Shkurtesat",
+  "feed": {
+    "title": "Sot në lagjen tënde",
+    "sample": "Të dhëna shembull",
+    "loading": "Po ngarkohet…",
+    "error": "Faqja nuk u ngarkua plotësisht. Kontrollo lidhjen dhe provo përsëri.",
+    "retry": "Provo përsëri"
+  },
+  "empty": {
+    "title": "Asgjë e re sot",
+    "body": "Kur komuna ose fqinjët postojnë diçka për lagjen tënde, do ta shohësh këtu.",
+    "action": "Shiko shpalljet e mëparshme"
+  },
+  "notice": {
+    "tag": "Shpallje",
+    "urgent": "E rëndësishme"
+  },
+  "poll": {
+    "tag": "Sondazh",
+    "closes": "Mbyllet {{when}}",
+    "voters_one": "{{number}} votues",
+    "voters_other": "{{number}} votues",
+    "vote": "Voto",
+    "chooseFirst": "Zgjidh një përgjigje para se të votosh.",
+    "thanks": "Faleminderit, vota u regjistrua",
+    "failed": "Vota nuk u regjistrua. Provo përsëri."
+  },
+  "help": {
+    "tag": "Ndihmë fqinjësore",
+    "where": "{{place}} · {{when}}",
+    "offer": "Ofro ndihmë"
+  }
+}

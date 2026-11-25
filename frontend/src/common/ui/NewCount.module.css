@@ -1,0 +1,27 @@
+.badge {
+  display: inline-block;
+  flex: none;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--badge-bg);
+  color: var(--badge-ink);
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.badge {
+  animation: pop var(--duration-base) var(--ease-out);
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
