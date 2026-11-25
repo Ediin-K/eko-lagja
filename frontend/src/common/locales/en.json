@@ -1,0 +1,79 @@
+{
+  "appName": "EkoLagja",
+  "pageTitle": "{{page}} – EkoLagja",
+  "skipToContent": "Skip to content",
+  "menu": {
+    "label": "Main menu",
+    "home": "Home"
+  },
+  "modules": {
+    "notices": "Notices",
+    "complaints": "Complaints",
+    "polls": "Polls",
+    "help": "Help"
+  },
+  "language": {
+    "label": "Language",
+    "sq": { "short": "SQ", "name": "SQ, Shqip" },
+    "en": { "short": "EN", "name": "EN, English" }
+  },
+  "theme": {
+    "dark": "Dark mode"
+  },
+  "newCount_zero": "Nothing new",
+  "newCount_one": "{{count}} new",
+  "newCount_other": "{{count}} new",
+  "newCountSuffix_one": ", {{count}} new",
+  "newCountSuffix_other": ", {{count}} new",
+  "bell": {
+    "label_zero": "Notifications, nothing new",
+    "label_one": "Notifications, {{count}} new",
+    "label_other": "Notifications, {{count}} new",
+    "title": "Notifications",
+    "close": "Close",
+    "newItem": "New: ",
+    "empty": "You have no notifications yet.",
+    "error": "Notifications could not be loaded. Try again later."
+  },
+  "notification": {
+    "NEW_NOTICE": "{{subject}}",
+    "COMPLAINT_STATUS_CHANGED": "Your complaint “{{subject}}” moved to “{{status}}”",
+    "POLL_OPENED": "New poll: {{subject}}",
+    "POLL_CLOSED": "The poll “{{subject}}” has closed",
+    "HELP_RESPONSE": "A neighbour responded to your post “{{subject}}”"
+  },
+  "timeRange": "{{start}}–{{end}}",
+  "byMunicipality": "Municipality · {{when}}",
+  "placeholder": {
+    "body": "This page is being built. It will be here soon.",
+    "back": "Back to home"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "This address does not exist in EkoLagja.",
+    "back": "Back to home"
+  },
+  "dates": {
+    "now": "now",
+    "today": "today",
+    "yesterday": "yesterday",
+    "tomorrow": "tomorrow",
+    "minutesAgo_one": "{{count}} minute ago",
+    "minutesAgo_other": "{{count}} minutes ago",
+    "inMinutes_one": "in {{count}} minute",
+    "inMinutes_other": "in {{count}} minutes",
+    "hoursAgo_one": "{{count}} hour ago",
+    "hoursAgo_other": "{{count}} hours ago",
+    "inHours_one": "in {{count}} hour",
+    "inHours_other": "in {{count}} hours",
+    "daysAgo_one": "{{count}} day ago",
+    "daysAgo_other": "{{count}} days ago",
+    "inDays_one": "in {{count}} day",
+    "inDays_other": "in {{count}} days",
+    "dayMonth": "{{day}} {{month}}",
+    "weekdayDate": "{{weekday}} {{day}} {{month}}",
+    "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    "monthsShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "weekdays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+  }
+}

@@ -4,5 +4,11 @@
     "IN_PROGRESS": "In progress",
     "RESOLVED": "Resolved",
     "REJECTED": "Rejected"
+  },
+  "home": {
+    "tag": "Your complaint",
+    "sent": "Sent {{when}}",
+    "progress": "Complaint status",
+    "response": "Municipality's reply: "
   }
 }

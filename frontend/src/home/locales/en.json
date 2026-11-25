@@ -1,0 +1,45 @@
+{
+  "greeting": {
+    "morning": "Good morning",
+    "afternoon": "Good afternoon",
+    "evening": "Good evening",
+    "withName": "{{greeting}}, {{name}}"
+  },
+  "neighbourhood": "{{name}} neighbourhood",
+  "report": {
+    "title": "Report a problem",
+    "examples": "Lights, roads, water, waste, parks"
+  },
+  "shortcuts": "Shortcuts",
+  "feed": {
+    "title": "Today in your neighbourhood",
+    "sample": "Sample data",
+    "loading": "Loading…",
+    "error": "The page did not load completely. Check your connection and try again.",
+    "retry": "Try again"
+  },
+  "empty": {
+    "title": "Nothing new today",
+    "body": "When the municipality or your neighbours post something for your neighbourhood, you will see it here.",
+    "action": "See earlier notices"
+  },
+  "notice": {
+    "tag": "Notice",
+    "urgent": "Important"
+  },
+  "poll": {
+    "tag": "Poll",
+    "closes": "Closes {{when}}",
+    "voters_one": "{{number}} voter",
+    "voters_other": "{{number}} voters",
+    "vote": "Vote",
+    "chooseFirst": "Choose an answer before you vote.",
+    "thanks": "Thanks, your vote is in",
+    "failed": "Your vote was not saved. Try again."
+  },
+  "help": {
+    "tag": "Neighbourly help",
+    "where": "{{place}} · {{when}}",
+    "offer": "Offer help"
+  }
+}

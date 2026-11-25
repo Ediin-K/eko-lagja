@@ -1,0 +1,254 @@
+.bellButton {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--hero-chip);
+  color: var(--hero-ink);
+  cursor: pointer;
+}
+
+.dot {
+  position: absolute;
+  top: 9px;
+  right: 10px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--sun);
+  border: 2px solid var(--hero-bg);
+}
+
+.panel {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.panel[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel::backdrop {
+  background: var(--backdrop);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 8px 10px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.close:hover {
+  background: var(--ground-app);
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 4px 16px 16px;
+}
+
+.message {
+  margin: 16px 0;
+  color: var(--ink-soft);
+  font-size: 14.5px;
+}
+
+.groupHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.groupIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background: var(--module-tint);
+  color: var(--module);
+}
+
+.groupNew {
+  margin-left: auto;
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.item:hover,
+.unread {
+  background: var(--ground-app);
+}
+
+.itemDot {
+  flex: none;
+  width: 11px;
+  height: 11px;
+  margin-top: 5px;
+  border-radius: 50%;
+}
+
+.unread .itemDot {
+  background: var(--sun);
+  border: 2px solid var(--sun-ink);
+}
+
+.itemText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.itemTitle {
+  font-size: 14.5px;
+  line-height: 1.35;
+}
+
+.unread .itemTitle {
+  font-weight: 700;
+}
+
+.itemWhen {
+  color: var(--ink-soft);
+  font-size: 12.5px;
+}
+
+@media (min-width: 640px) {
+  .panel {
+    inset: auto;
+    width: min(400px, calc(100vw - 32px));
+    height: auto;
+    max-height: min(560px, calc(100vh - 120px));
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    box-shadow: var(--panel-shadow);
+  }
+
+  .panel::backdrop {
+    background: var(--backdrop-light);
+  }
+
+  .head {
+    padding-inline: 16px 8px;
+  }
+
+  .body {
+    padding-inline: 12px;
+  }
+}
+
+.panel[open] {
+  animation: sheet-in var(--duration-slow) var(--ease-out);
+}
+
+.panel[open]::backdrop {
+  animation: fade-in var(--duration-slow) var(--ease-out);
+}
+
+.item {
+  transition: background-color var(--duration-fast) ease;
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+}
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (min-width: 640px) {
+  .panel[open] {
+    transform-origin: top right;
+    animation-name: drop-in;
+    animation-duration: var(--duration-base);
+  }
+
+  .panel[open]::backdrop {
+    animation-duration: var(--duration-base);
+  }
+}

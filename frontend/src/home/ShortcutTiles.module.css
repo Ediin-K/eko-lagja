@@ -1,0 +1,87 @@
+.tiles {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: -22px;
+}
+
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  padding: 10px 2px 9px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: clamp(12px, 3.6vw, 12.5px);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--module-tint);
+  color: var(--module);
+}
+
+.count {
+  position: absolute;
+  top: 5px;
+  right: 6px;
+}
+
+@media (min-width: 960px) {
+  .tiles {
+    gap: 16px;
+    margin-top: -30px;
+  }
+
+  .tile {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    font-size: 16px;
+    text-align: left;
+  }
+
+  .count {
+    position: static;
+    margin-left: auto;
+  }
+}
+
+.tile {
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) ease;
+}
+
+.tile:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tile:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--lift-shadow);
+  }
+
+  .tile:hover:active {
+    transform: translateY(-2px) scale(0.97);
+  }
+}

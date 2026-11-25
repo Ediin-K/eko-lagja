@@ -1,0 +1,154 @@
+.pin {
+  position: absolute;
+  top: 128px;
+  right: 14%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--sun);
+  border: 3px solid var(--hero-bg);
+  animation: pulse 2.6s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--sun-glow);
+  }
+  70% {
+    box-shadow: 0 0 0 16px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.hello {
+  margin-top: 14px;
+}
+
+.greeting {
+  margin-bottom: 8px;
+  font-size: 31px;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.neighbourhood {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px 4px 6px;
+  border-radius: 999px;
+  background: var(--hero-chip);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.neighbourhood svg {
+  color: var(--sun);
+}
+
+.report {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px 14px;
+  border-radius: 20px;
+  background: var(--sun);
+  color: var(--sun-ink);
+  text-align: left;
+  text-decoration: none;
+  transition: transform 0.12s ease;
+}
+
+.report:active {
+  transform: scale(0.98);
+}
+
+.plus {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: var(--sun-ink);
+  color: var(--sun);
+}
+
+.reportText {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.reportText strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.reportText small {
+  display: block;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.go {
+  flex: none;
+}
+
+@media (min-width: 960px) {
+  .pin {
+    top: 150px;
+    right: auto;
+    left: 55%;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 400px);
+    align-items: end;
+    gap: 32px;
+    padding-top: 26px;
+  }
+
+  .hello {
+    margin-top: 0;
+  }
+
+  .greeting {
+    margin-bottom: 12px;
+    font-size: 46px;
+  }
+
+  .report {
+    margin-top: 0;
+  }
+}
+
+.report {
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .report:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--lift-shadow);
+  }
+
+  .report:hover:active {
+    transform: translateY(-2px) scale(0.98);
+  }
+}

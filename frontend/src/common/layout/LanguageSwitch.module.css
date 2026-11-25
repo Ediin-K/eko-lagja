@@ -1,0 +1,44 @@
+.switch {
+  position: relative;
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--hero-chip);
+}
+
+.thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 44px;
+  height: 38px;
+  border-radius: 999px;
+  background: var(--hero-ink);
+  transform: translateX(calc(var(--index, 0) * 100%));
+  transition: transform var(--duration-base) var(--ease-in-out);
+}
+
+.option {
+  position: relative;
+  width: 44px;
+  min-height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--hero-ink);
+  font: 700 13px/1 var(--font-body);
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: color var(--duration-base) ease;
+}
+
+.option::after {
+  content: '';
+  position: absolute;
+  inset: -3px 0;
+}
+
+.option[aria-pressed='true'] {
+  color: var(--hero-bg);
+}

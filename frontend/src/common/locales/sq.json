@@ -1,0 +1,79 @@
+{
+  "appName": "EkoLagja",
+  "pageTitle": "{{page}} – EkoLagja",
+  "skipToContent": "Kalo te përmbajtja",
+  "menu": {
+    "label": "Menuja kryesore",
+    "home": "Kreu"
+  },
+  "modules": {
+    "notices": "Shpalljet",
+    "complaints": "Ankesat",
+    "polls": "Sondazhet",
+    "help": "Ndihma"
+  },
+  "language": {
+    "label": "Gjuha",
+    "sq": { "short": "SQ", "name": "SQ, Shqip" },
+    "en": { "short": "EN", "name": "EN, English" }
+  },
+  "theme": {
+    "dark": "Modaliteti i errët"
+  },
+  "newCount_zero": "Asnjë e re",
+  "newCount_one": "{{count}} e re",
+  "newCount_other": "{{count}} të reja",
+  "newCountSuffix_one": ", {{count}} e re",
+  "newCountSuffix_other": ", {{count}} të reja",
+  "bell": {
+    "label_zero": "Njoftime, asnjë e re",
+    "label_one": "Njoftime, {{count}} e re",
+    "label_other": "Njoftime, {{count}} të reja",
+    "title": "Njoftime",
+    "close": "Mbyll",
+    "newItem": "E re: ",
+    "empty": "Nuk ke asnjë njoftim ende.",
+    "error": "Njoftimet nuk u ngarkuan. Provo përsëri më vonë."
+  },
+  "notification": {
+    "NEW_NOTICE": "{{subject}}",
+    "COMPLAINT_STATUS_CHANGED": "Ankesa jote “{{subject}}” kaloi në “{{status}}”",
+    "POLL_OPENED": "Sondazh i ri: {{subject}}",
+    "POLL_CLOSED": "Sondazhi “{{subject}}” u mbyll",
+    "HELP_RESPONSE": "Një fqinj u përgjigj te postimi yt “{{subject}}”"
+  },
+  "timeRange": "{{start}}–{{end}}",
+  "byMunicipality": "Komuna · {{when}}",
+  "placeholder": {
+    "body": "Kjo faqe po ndërtohet. Së shpejti do ta gjesh këtu.",
+    "back": "Kthehu te kreu"
+  },
+  "notFound": {
+    "title": "Faqja nuk u gjet",
+    "body": "Kjo adresë nuk ekziston në EkoLagja.",
+    "back": "Kthehu te kreu"
+  },
+  "dates": {
+    "now": "tani",
+    "today": "sot",
+    "yesterday": "dje",
+    "tomorrow": "nesër",
+    "minutesAgo_one": "{{count}} minutë më parë",
+    "minutesAgo_other": "{{count}} minuta më parë",
+    "inMinutes_one": "pas {{count}} minute",
+    "inMinutes_other": "pas {{count}} minutash",
+    "hoursAgo_one": "{{count}} orë më parë",
+    "hoursAgo_other": "{{count}} orë më parë",
+    "inHours_one": "pas {{count}} ore",
+    "inHours_other": "pas {{count}} orësh",
+    "daysAgo_one": "{{count}} ditë më parë",
+    "daysAgo_other": "{{count}} ditë më parë",
+    "inDays_one": "pas {{count}} dite",
+    "inDays_other": "pas {{count}} ditësh",
+    "dayMonth": "{{day}} {{month}}",
+    "weekdayDate": "{{weekday}}, {{day}} {{month}}",
+    "months": ["janar", "shkurt", "mars", "prill", "maj", "qershor", "korrik", "gusht", "shtator", "tetor", "nëntor", "dhjetor"],
+    "monthsShort": ["jan", "shk", "mar", "pri", "maj", "qer", "korr", "gush", "sht", "tet", "nën", "dhj"],
+    "weekdays": ["e diel", "e hënë", "e martë", "e mërkurë", "e enjte", "e premte", "e shtunë"]
+  }
+}

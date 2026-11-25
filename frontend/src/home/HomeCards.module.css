@@ -1,0 +1,173 @@
+.timebox {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin: 0;
+  padding: 9px 11px;
+  border-radius: 12px;
+  background: var(--notice-tint);
+  color: var(--notice-ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.hours {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    border-color var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease;
+}
+
+.option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.optionVoted {
+  cursor: default;
+}
+
+.fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--poll-tint);
+  transform-origin: left;
+}
+
+.fillGrow {
+  animation: grow 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.radio,
+.optionText,
+.percent {
+  position: relative;
+}
+
+.radio {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--control-line);
+  border-radius: 50%;
+  background: var(--surface);
+  transition: border-color var(--duration-fast) ease;
+}
+
+.radio::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--poll);
+  transform: scale(0);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.optionText {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.percent {
+  color: var(--poll-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.option:has(input:checked) {
+  border-color: var(--poll);
+  box-shadow: inset 0 0 0 1px var(--poll);
+}
+
+.option:has(input:checked) .radio {
+  border-color: var(--poll);
+}
+
+.option:has(input:checked) .radio::after {
+  transform: scale(1);
+}
+
+.option:has(input:focus-visible) {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.problem {
+  margin: 0;
+  color: var(--danger);
+  font-size: 13.5px;
+}
+
+.thanks {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  min-height: 44px;
+  border-radius: 8px;
+  color: var(--poll-ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.who {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--help-tint);
+  color: var(--help-ink);
+  font-size: 13px;
+  font-weight: 700;
+}
