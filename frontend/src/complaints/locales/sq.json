@@ -1,0 +1,8 @@
+{
+  "status": {
+    "RECEIVED": "Pranuar",
+    "IN_PROGRESS": "Në proces",
+    "RESOLVED": "Zgjidhur",
+    "REJECTED": "Refuzuar"
+  }
+}
