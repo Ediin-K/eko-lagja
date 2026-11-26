@@ -46,6 +46,14 @@ public class Attachment {
 		return new Attachment(null, fileName, fileType, sizeBytes, now, owner, storageKey);
 	}
 
+	public static Attachment restore(Long id, String fileName, FileType fileType, long sizeBytes,
+			Instant uploadedAt, AttachmentOwner owner, String storageKey) {
+		Objects.requireNonNull(id, "id");
+		Objects.requireNonNull(fileType, "fileType");
+		Objects.requireNonNull(owner, "owner");
+		return new Attachment(id, fileName, fileType, sizeBytes, uploadedAt, owner, storageKey);
+	}
+
 	public boolean belongsToNotice() {
 		return owner.type() == OwnerType.NOTICE;
 	}

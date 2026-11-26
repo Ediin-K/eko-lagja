@@ -99,6 +99,16 @@ class AttachmentTest {
 	}
 
 	@Test
+	void restoredAttachmentKeepsItsSavedState() {
+		Attachment attachment = Attachment.restore(5L, FILE_NAME, FileType.PDF, 2048, NOW, NOTICE, STORAGE_KEY);
+
+		assertThat(attachment.getId()).isEqualTo(5L);
+		assertThat(attachment.getFileType()).isEqualTo(FileType.PDF);
+		assertThat(attachment.getOwner()).isEqualTo(NOTICE);
+		assertThat(attachment.getStorageKey()).isEqualTo(STORAGE_KEY);
+	}
+
+	@Test
 	void ownerNeedsATypeAndAnId() {
 		assertThat(AttachmentOwner.ofComplaint(42L)).isEqualTo(new AttachmentOwner(OwnerType.COMPLAINT, 42L));
 		assertThatNullPointerException().isThrownBy(() -> AttachmentOwner.ofNotice(null));
