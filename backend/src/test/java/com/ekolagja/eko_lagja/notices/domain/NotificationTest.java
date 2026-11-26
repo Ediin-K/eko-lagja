@@ -68,6 +68,17 @@ class NotificationTest {
 		assertThat(notification.isRead()).isFalse();
 	}
 
+	@Test
+	void restoredNotificationKeepsItsSavedState() {
+		Notification notification = Notification.restore(9L, RESIDENT_ID, NotificationType.NEW_NOTICE,
+				COMPLAINT_ID, CREATED_AT, OPENED_AT);
+
+		assertThat(notification.getId()).isEqualTo(9L);
+		assertThat(notification.getType()).isEqualTo(NotificationType.NEW_NOTICE);
+		assertThat(notification.isRead()).isTrue();
+		assertThat(notification.getReadAt()).isEqualTo(OPENED_AT);
+	}
+
 	private static Notification newNotification() {
 		return Notification.create(RESIDENT_ID, NotificationType.COMPLAINT_STATUS_CHANGED, COMPLAINT_ID, CREATED_AT);
 	}
