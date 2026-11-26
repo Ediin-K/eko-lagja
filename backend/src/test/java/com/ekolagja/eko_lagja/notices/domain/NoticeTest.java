@@ -214,6 +214,19 @@ class NoticeTest {
 		assertThat(withdrawn.isVisibleIn(null, TODAY)).isFalse();
 	}
 
+	@Test
+	void restoredNoticeKeepsItsSavedState() {
+		Instant withdrawnAt = Instant.parse("2026-11-24T08:00:00Z");
+
+		Notice notice = Notice.restore(12L, TITLE, CONTENT, CATEGORY, Set.of(NEIGHBOURHOOD_ID), true,
+				OFFICIAL_ID, NOW, EXPIRES_ON, withdrawnAt);
+
+		assertThat(notice.getId()).isEqualTo(12L);
+		assertThat(notice.getWithdrawnAt()).isEqualTo(withdrawnAt);
+		assertThat(notice.statusOn(TODAY)).isEqualTo(WITHDRAWN);
+		assertThat(notice.getNeighbourhoodIds()).containsExactly(NEIGHBOURHOOD_ID);
+	}
+
 	private static Notice publishFor(Set<Long> neighbourhoodIds) {
 		return Notice.publish(TITLE, CONTENT, CATEGORY, neighbourhoodIds, true, EXPIRES_ON, OFFICIAL_ID, NOW);
 	}

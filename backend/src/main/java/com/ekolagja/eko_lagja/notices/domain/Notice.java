@@ -52,6 +52,14 @@ public class Notice {
 				publishedBy, now, expiresOn, null);
 	}
 
+	public static Notice restore(Long id, String title, String content, String category,
+			Set<Long> neighbourhoodIds, boolean urgent, Long publishedBy, Instant publishedAt,
+			LocalDate expiresOn, Instant withdrawnAt) {
+		Objects.requireNonNull(id, "id");
+		return new Notice(id, title, content, category, Set.copyOf(neighbourhoodIds), urgent,
+				publishedBy, publishedAt, expiresOn, withdrawnAt);
+	}
+
 	public void edit(String title, String content, String category,
 			Set<Long> neighbourhoodIds, boolean urgent, LocalDate expiresOn,
 			LocalDate today) {
