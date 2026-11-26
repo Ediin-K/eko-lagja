@@ -6,6 +6,7 @@ import java.util.Objects;
 public class Attachment {
 
 	public static final long MAX_SIZE_BYTES = 10L * 1024 * 1024;
+	public static final int MAX_FILE_NAME_LENGTH = 255;
 
 	private final Long id;
 	private final String fileName;
@@ -34,14 +35,18 @@ public class Attachment {
 			throw new IllegalArgumentException("storageKey must not be blank");
 		}
 		if (fileName == null || fileName.isBlank()) {
-			throw new FileNotAllowedException("file name is missing");
+			throw new FileNotAllowedException(FileProblem.NAME_MISSING, "file name is missing");
+		}
+		if (fileName.length() > MAX_FILE_NAME_LENGTH) {
+			throw new FileNotAllowedException(FileProblem.NAME_TOO_LONG,
+					"file name must have at most " + MAX_FILE_NAME_LENGTH + " characters");
 		}
 		FileType fileType = FileType.fromContentType(contentType);
 		if (sizeBytes <= 0) {
-			throw new FileNotAllowedException("file is empty");
+			throw new FileNotAllowedException(FileProblem.EMPTY, "file is empty");
 		}
 		if (sizeBytes > MAX_SIZE_BYTES) {
-			throw new FileNotAllowedException("file is larger than 10 MB");
+			throw new FileNotAllowedException(FileProblem.TOO_LARGE, "file is larger than 10 MB");
 		}
 		return new Attachment(null, fileName, fileType, sizeBytes, now, owner, storageKey);
 	}

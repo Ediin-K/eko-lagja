@@ -19,7 +19,7 @@ public enum FileType {
 
 	public static FileType fromContentType(String contentType) {
 		if (contentType == null) {
-			throw new FileNotAllowedException("content type is missing");
+			throw new FileNotAllowedException(FileProblem.TYPE_NOT_ALLOWED, "content type is missing");
 		}
 		String mediaType = contentType.split(";", 2)[0].strip().toLowerCase(Locale.ROOT);
 		for (FileType type : values()) {
@@ -27,6 +27,6 @@ public enum FileType {
 				return type;
 			}
 		}
-		throw new FileNotAllowedException("file type not allowed: " + contentType);
+		throw new FileNotAllowedException(FileProblem.TYPE_NOT_ALLOWED, "file type not allowed: " + contentType);
 	}
 }

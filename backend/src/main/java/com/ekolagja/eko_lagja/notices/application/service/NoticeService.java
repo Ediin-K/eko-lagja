@@ -13,15 +13,19 @@ import com.ekolagja.eko_lagja.notices.application.port.in.EditNoticeUseCase;
 import com.ekolagja.eko_lagja.notices.application.port.in.GetNoticeUseCase;
 import com.ekolagja.eko_lagja.notices.application.port.in.ListNoticesUseCase;
 import com.ekolagja.eko_lagja.notices.application.port.in.NotAllowedException;
+import com.ekolagja.eko_lagja.notices.application.port.in.NoticeDetails;
+import com.ekolagja.eko_lagja.notices.application.port.in.NoticeFileView;
 import com.ekolagja.eko_lagja.notices.application.port.in.NoticeNotFoundException;
 import com.ekolagja.eko_lagja.notices.application.port.in.NoticeView;
 import com.ekolagja.eko_lagja.notices.application.port.in.PublishNoticeCommand;
 import com.ekolagja.eko_lagja.notices.application.port.in.PublishNoticeUseCase;
 import com.ekolagja.eko_lagja.notices.application.port.in.WithdrawNoticeUseCase;
+import com.ekolagja.eko_lagja.notices.application.port.out.Attachments;
 import com.ekolagja.eko_lagja.notices.application.port.out.CurrentUser;
 import com.ekolagja.eko_lagja.notices.application.port.out.NeighbourhoodDirectory;
 import com.ekolagja.eko_lagja.notices.application.port.out.Notices;
 import com.ekolagja.eko_lagja.notices.application.port.out.ResidentDirectory;
+import com.ekolagja.eko_lagja.notices.domain.AttachmentOwner;
 import com.ekolagja.eko_lagja.notices.domain.InvalidNoticeException;
 import com.ekolagja.eko_lagja.notices.domain.Notice;
 import com.ekolagja.eko_lagja.notices.domain.NoticeStatus;
@@ -35,16 +39,18 @@ public class NoticeService implements PublishNoticeUseCase, EditNoticeUseCase,
 					.thenComparing(Notice::getPublishedAt, Comparator.reverseOrder());
 
 	private final Notices notices;
+	private final Attachments attachments;
 	private final CurrentUser currentUser;
 	private final NeighbourhoodDirectory neighbourhoods;
 	private final ResidentDirectory residents;
 	private final CreateNotificationUseCase notifications;
 	private final Clock clock;
 
-	public NoticeService(Notices notices, CurrentUser currentUser,
+	public NoticeService(Notices notices, Attachments attachments, CurrentUser currentUser,
 			NeighbourhoodDirectory neighbourhoods, ResidentDirectory residents,
 			CreateNotificationUseCase notifications, Clock clock) {
 		this.notices = notices;
+		this.attachments = attachments;
 		this.currentUser = currentUser;
 		this.neighbourhoods = neighbourhoods;
 		this.residents = residents;
@@ -98,12 +104,15 @@ public class NoticeService implements PublishNoticeUseCase, EditNoticeUseCase,
 	}
 
 	@Override
-	public NoticeView get(Long noticeId) {
+	public NoticeDetails get(Long noticeId) {
 		Notice notice = load(noticeId);
 		if (notice.statusOn(today()) != NoticeStatus.ACTIVE) {
 			throw new NoticeNotFoundException(noticeId);
 		}
-		return NoticeView.of(notice);
+		List<NoticeFileView> files = attachments.findByOwner(AttachmentOwner.ofNotice(noticeId)).stream()
+				.map(NoticeFileView::of)
+				.toList();
+		return new NoticeDetails(NoticeView.of(notice), files);
 	}
 
 	private Long requireOfficial() {
@@ -116,7 +125,7 @@ public class NoticeService implements PublishNoticeUseCase, EditNoticeUseCase,
 	private void requireKnownNeighbourhoods(Set<Long> neighbourhoodIds) {
 		if (neighbourhoodIds != null && !neighbourhoodIds.isEmpty()
 				&& !neighbourhoods.allExist(neighbourhoodIds)) {
-			throw new InvalidNoticeException("unknown neighbourhood");
+			throw new InvalidNoticeException("neighbourhoodIds", "unknown neighbourhood");
 		}
 	}
 

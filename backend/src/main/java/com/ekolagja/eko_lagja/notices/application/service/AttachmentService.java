@@ -21,6 +21,7 @@ import com.ekolagja.eko_lagja.notices.application.port.out.Notices;
 import com.ekolagja.eko_lagja.notices.domain.Attachment;
 import com.ekolagja.eko_lagja.notices.domain.AttachmentOwner;
 import com.ekolagja.eko_lagja.notices.domain.FileNotAllowedException;
+import com.ekolagja.eko_lagja.notices.domain.FileProblem;
 import com.ekolagja.eko_lagja.notices.domain.FileType;
 import com.ekolagja.eko_lagja.notices.domain.Notice;
 import com.ekolagja.eko_lagja.notices.domain.NoticeNotActiveException;
@@ -59,7 +60,7 @@ public class AttachmentService implements StoreAttachmentUseCase, OpenAttachment
 		Attachment attachment = Attachment.create(upload.fileName(), upload.contentType(), content.length,
 				owner, UUID.randomUUID().toString(), Instant.now(clock));
 		if (!contentMatches(attachment.getFileType(), content)) {
-			throw new FileNotAllowedException("file content does not match its type");
+			throw new FileNotAllowedException(FileProblem.CONTENT_MISMATCH, "file content does not match its type");
 		}
 		fileStore.write(attachment.getStorageKey(), content);
 		return attachments.save(attachment).getId();

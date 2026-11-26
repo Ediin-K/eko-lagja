@@ -94,6 +94,52 @@ class NoticeTest {
 	}
 
 	@Test
+	void titleContentAndCategoryHaveMaximumLengths() {
+		Notice longest = Notice.publish("t".repeat(300), "c".repeat(8000), "k".repeat(50), Set.of(), false,
+				EXPIRES_ON, OFFICIAL_ID, NOW);
+		assertThat(longest.getTitle()).hasSize(300);
+		assertThat(longest.getContent()).hasSize(8000);
+		assertThat(longest.getCategory()).hasSize(50);
+
+		assertThatThrownBy(() -> Notice.publish("t".repeat(301), CONTENT, CATEGORY, Set.of(), false, EXPIRES_ON,
+				OFFICIAL_ID, NOW)).isInstanceOf(InvalidNoticeException.class).extracting("field").isEqualTo("title");
+		assertThatThrownBy(() -> Notice.publish(TITLE, "c".repeat(8001), CATEGORY, Set.of(), false, EXPIRES_ON,
+				OFFICIAL_ID, NOW)).isInstanceOf(InvalidNoticeException.class).extracting("field").isEqualTo("content");
+		assertThatThrownBy(() -> Notice.publish(TITLE, CONTENT, "k".repeat(51), Set.of(), false, EXPIRES_ON,
+				OFFICIAL_ID, NOW)).isInstanceOf(InvalidNoticeException.class).extracting("field").isEqualTo("category");
+	}
+
+	@Test
+	void editKeepsTheSameMaximumLengths() {
+		Notice notice = publishFor(Set.of());
+
+		assertThatThrownBy(() -> notice.edit("t".repeat(301), CONTENT, CATEGORY, Set.of(), false, EXPIRES_ON, TODAY))
+				.isInstanceOf(InvalidNoticeException.class).extracting("field").isEqualTo("title");
+		assertThatThrownBy(() -> notice.edit(TITLE, "c".repeat(8001), CATEGORY, Set.of(), false, EXPIRES_ON, TODAY))
+				.isInstanceOf(InvalidNoticeException.class).extracting("field").isEqualTo("content");
+		assertThatThrownBy(() -> notice.edit(TITLE, CONTENT, "k".repeat(51), Set.of(), false, EXPIRES_ON, TODAY))
+				.isInstanceOf(InvalidNoticeException.class).extracting("field").isEqualTo("category");
+		assertThat(notice.getTitle()).isEqualTo(TITLE);
+		assertThat(notice.getCategory()).isEqualTo(CATEGORY);
+	}
+
+	@Test
+	void everyRefusalNamesTheField() {
+		assertThatThrownBy(() -> Notice.publish(" ", CONTENT, CATEGORY, Set.of(), false, EXPIRES_ON, OFFICIAL_ID, NOW))
+				.extracting("field").isEqualTo("title");
+		assertThatThrownBy(() -> Notice.publish(TITLE, null, CATEGORY, Set.of(), false, EXPIRES_ON, OFFICIAL_ID, NOW))
+				.extracting("field").isEqualTo("content");
+		assertThatThrownBy(() -> Notice.publish(TITLE, CONTENT, CATEGORY, Set.of(), false, null, OFFICIAL_ID, NOW))
+				.extracting("field").isEqualTo("expiresOn");
+		assertThatThrownBy(() -> Notice.publish(TITLE, CONTENT, CATEGORY, Set.of(), false, TODAY.minusDays(1),
+				OFFICIAL_ID, NOW)).extracting("field").isEqualTo("expiresOn");
+		assertThatThrownBy(() -> Notice.publish(TITLE, CONTENT, CATEGORY, null, false, EXPIRES_ON, OFFICIAL_ID, NOW))
+				.extracting("field").isEqualTo("neighbourhoodIds");
+		assertThatThrownBy(() -> Notice.publish(TITLE, CONTENT, CATEGORY, Set.of(), false, EXPIRES_ON, null, NOW))
+				.extracting("field").isEqualTo("publishedBy");
+	}
+
+	@Test
 	void neighbourhoodsAreCopiedNotShared() {
 		Set<Long> ids = new HashSet<>(Set.of(NEIGHBOURHOOD_ID));
 		Notice notice = publishFor(ids);

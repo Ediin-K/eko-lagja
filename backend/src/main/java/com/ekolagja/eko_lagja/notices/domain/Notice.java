@@ -9,6 +9,9 @@ import java.util.Set;
 public class Notice {
 
 	public static final ZoneId MUNICIPALITY_ZONE = ZoneId.of("Europe/Belgrade");
+	public static final int MAX_TITLE_LENGTH = 300;
+	public static final int MAX_CONTENT_LENGTH = 8000;
+	public static final int MAX_CATEGORY_LENGTH = 50;
 
 	private final Long id;
 	private String title;
@@ -41,11 +44,12 @@ public class Notice {
 			Long publishedBy, Instant now) {
 		Objects.requireNonNull(now, "now");
 		if (publishedBy == null) {
-			throw new InvalidNoticeException("publishedBy must be set");
+			throw new InvalidNoticeException("publishedBy", "publishedBy must be set");
 		}
 		LocalDate today = dayOf(now);
-		requireText(title, "title");
-		requireText(content, "content");
+		requireText(title, "title", MAX_TITLE_LENGTH);
+		requireText(content, "content", MAX_CONTENT_LENGTH);
+		requireValidCategory(category);
 		Set<Long> ids = copyOf(neighbourhoodIds);
 		requireValidExpiry(expiresOn, today);
 		return new Notice(null, title, content, category, ids, urgent,
@@ -64,8 +68,9 @@ public class Notice {
 			Set<Long> neighbourhoodIds, boolean urgent, LocalDate expiresOn,
 			LocalDate today) {
 		requireActiveOn(today);
-		requireText(title, "title");
-		requireText(content, "content");
+		requireText(title, "title", MAX_TITLE_LENGTH);
+		requireText(content, "content", MAX_CONTENT_LENGTH);
+		requireValidCategory(category);
 		Set<Long> ids = copyOf(neighbourhoodIds);
 		requireValidExpiry(expiresOn, today);
 		this.title = title;
@@ -156,24 +161,35 @@ public class Notice {
 		return LocalDate.ofInstant(instant, MUNICIPALITY_ZONE);
 	}
 
-	private static void requireText(String value, String name) {
+	private static void requireText(String value, String name, int maxLength) {
 		if (value == null || value.isBlank()) {
-			throw new InvalidNoticeException(name + " must not be blank");
+			throw new InvalidNoticeException(name, name + " must not be blank");
+		}
+		if (value.length() > maxLength) {
+			throw new InvalidNoticeException(name, name + " must have at most " + maxLength + " characters");
+		}
+	}
+
+	private static void requireValidCategory(String category) {
+		if (category != null && category.length() > MAX_CATEGORY_LENGTH) {
+			throw new InvalidNoticeException("category",
+					"category must have at most " + MAX_CATEGORY_LENGTH + " characters");
 		}
 	}
 
 	private static void requireValidExpiry(LocalDate expiresOn, LocalDate today) {
 		if (expiresOn == null) {
-			throw new InvalidNoticeException("expiresOn must be set");
+			throw new InvalidNoticeException("expiresOn", "expiresOn must be set");
 		}
 		if (expiresOn.isBefore(today)) {
-			throw new InvalidNoticeException("expiresOn must be today or later");
+			throw new InvalidNoticeException("expiresOn", "expiresOn must be today or later");
 		}
 	}
 
 	private static Set<Long> copyOf(Set<Long> neighbourhoodIds) {
 		if (neighbourhoodIds == null || neighbourhoodIds.stream().anyMatch(Objects::isNull)) {
-			throw new InvalidNoticeException("neighbourhoodIds must be a set of ids, empty for the whole municipality");
+			throw new InvalidNoticeException("neighbourhoodIds",
+					"neighbourhoodIds must be a set of ids, empty for the whole municipality");
 		}
 		return Set.copyOf(neighbourhoodIds);
 	}

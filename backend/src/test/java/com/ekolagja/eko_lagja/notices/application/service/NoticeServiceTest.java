@@ -2,6 +2,7 @@ package com.ekolagja.eko_lagja.notices.application.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.groups.Tuple.tuple;
 
 import java.time.Clock;
 import java.time.Instant;
@@ -20,13 +21,19 @@ import org.junit.jupiter.api.Test;
 import com.ekolagja.eko_lagja.notices.application.port.in.CreateNotificationUseCase;
 import com.ekolagja.eko_lagja.notices.application.port.in.EditNoticeCommand;
 import com.ekolagja.eko_lagja.notices.application.port.in.NotAllowedException;
+import com.ekolagja.eko_lagja.notices.application.port.in.NoticeDetails;
+import com.ekolagja.eko_lagja.notices.application.port.in.NoticeFileView;
 import com.ekolagja.eko_lagja.notices.application.port.in.NoticeNotFoundException;
 import com.ekolagja.eko_lagja.notices.application.port.in.NoticeView;
 import com.ekolagja.eko_lagja.notices.application.port.in.PublishNoticeCommand;
+import com.ekolagja.eko_lagja.notices.application.port.out.Attachments;
 import com.ekolagja.eko_lagja.notices.application.port.out.CurrentUser;
 import com.ekolagja.eko_lagja.notices.application.port.out.NeighbourhoodDirectory;
 import com.ekolagja.eko_lagja.notices.application.port.out.Notices;
 import com.ekolagja.eko_lagja.notices.application.port.out.ResidentDirectory;
+import com.ekolagja.eko_lagja.notices.domain.Attachment;
+import com.ekolagja.eko_lagja.notices.domain.AttachmentOwner;
+import com.ekolagja.eko_lagja.notices.domain.FileType;
 import com.ekolagja.eko_lagja.notices.domain.InvalidNoticeException;
 import com.ekolagja.eko_lagja.notices.domain.Notice;
 import com.ekolagja.eko_lagja.notices.domain.NoticeNotActiveException;
@@ -46,7 +53,8 @@ class NoticeServiceTest {
 	private final FakeCurrentUser currentUser = new FakeCurrentUser();
 	private final FakeResidents residents = new FakeResidents();
 	private final RecordingNotifications notifications = new RecordingNotifications();
-	private final NoticeService service = new NoticeService(notices, currentUser,
+	private final InMemoryAttachments attachments = new InMemoryAttachments();
+	private final NoticeService service = new NoticeService(notices, attachments, currentUser,
 			ids -> Set.of(CENTER, SUNNY_HILL).containsAll(ids), residents, notifications,
 			Clock.fixed(NOW, ZoneOffset.UTC));
 
@@ -56,7 +64,7 @@ class NoticeServiceTest {
 
 		Long id = service.publish(command(Set.of(CENTER), false));
 
-		NoticeView view = service.get(id);
+		NoticeView view = service.get(id).notice();
 		assertThat(view.title()).isEqualTo("Water cut");
 		assertThat(view.neighbourhoodIds()).containsExactly(CENTER);
 		assertThat(view.publishedAt()).isEqualTo(NOW);
@@ -145,6 +153,21 @@ class NoticeServiceTest {
 	}
 
 	@Test
+	void singleNoticeListsOnlyItsOwnFiles() {
+		Long id = notices.seed(Set.of(), false, NOW, NEXT_WEEK, null);
+		Long other = notices.seed(Set.of(), false, NOW, NEXT_WEEK, null);
+		attachments.add(AttachmentOwner.ofNotice(id), "map.png", FileType.PNG);
+		attachments.add(AttachmentOwner.ofNotice(other), "other.pdf", FileType.PDF);
+		attachments.add(AttachmentOwner.ofComplaint(id), "pothole.jpg", FileType.JPEG);
+
+		NoticeDetails details = service.get(id);
+
+		assertThat(details.notice().id()).isEqualTo(id);
+		assertThat(details.files()).extracting(NoticeFileView::fileName, NoticeFileView::contentType)
+				.containsExactly(tuple("map.png", "image/png"));
+	}
+
+	@Test
 	void officialEditsAnActiveNotice() {
 		Long id = notices.seed(Set.of(CENTER), false, NOW, NEXT_WEEK, null);
 		currentUser.logInAsOfficial();
@@ -152,7 +175,7 @@ class NoticeServiceTest {
 		service.edit(new EditNoticeCommand(id, "Water cut moved", "Now on Tuesday.", "WATER",
 				Set.of(SUNNY_HILL), false, TODAY));
 
-		NoticeView view = service.get(id);
+		NoticeView view = service.get(id).notice();
 		assertThat(view.title()).isEqualTo("Water cut moved");
 		assertThat(view.neighbourhoodIds()).containsExactly(SUNNY_HILL);
 		assertThat(view.expiresOn()).isEqualTo(TODAY);
@@ -263,6 +286,31 @@ class NoticeServiceTest {
 				}
 			});
 			return result;
+		}
+	}
+
+	private static class InMemoryAttachments implements Attachments {
+
+		private final List<Attachment> stored = new ArrayList<>();
+
+		void add(AttachmentOwner owner, String fileName, FileType type) {
+			stored.add(Attachment.restore((long) stored.size() + 1, fileName, type, 100, NOW, owner,
+					"key-" + stored.size()));
+		}
+
+		@Override
+		public Attachment save(Attachment attachment) {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public Optional<Attachment> findById(Long id) {
+			return stored.stream().filter(attachment -> attachment.getId().equals(id)).findFirst();
+		}
+
+		@Override
+		public List<Attachment> findByOwner(AttachmentOwner owner) {
+			return stored.stream().filter(attachment -> attachment.getOwner().equals(owner)).toList();
 		}
 	}
 
