@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.8 Chrome/140.0.7339.240 Electron/38.4.0 Safari/537.36" version="28.2.8">
   <diagram name="Polls module (hexagonal)" id="polls-hex">
     <mxGraphModel dx="1799" dy="1061" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="800" math="0" shadow="0">
@@ -21,32 +21,29 @@
         <mxCell id="ctrl" value="PollsController&lt;br&gt;(REST)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#555555;strokeColor=#A0A0A0;fontSize=11;fontColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="285" y="375" width="105" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="pin" value="PollsApi / port/in&lt;br&gt;CreatePoll&lt;br&gt;OpenPoll&lt;br&gt;ClosePoll&lt;br&gt;CastVote&lt;br&gt;GetPollResults" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#555555;strokeColor=#A0A0A0;fontSize=11;fontColor=#FFFFFF;" parent="1" vertex="1">
+        <mxCell id="pin" value="port/in&lt;br&gt;CreatePoll&lt;br&gt;OpenPoll&lt;br&gt;ClosePoll&lt;br&gt;CastVote&lt;br&gt;GetPollResults" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#555555;strokeColor=#A0A0A0;fontSize=11;fontColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="432" y="340" width="110" height="120" as="geometry" />
         </mxCell>
         <mxCell id="svc" value="PollsService&lt;br&gt;(implements the use cases)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#555555;strokeColor=#A0A0A0;fontSize=11;fontColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="610" y="535" width="180" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="pout" value="port/out&lt;br&gt;Polls&lt;br&gt;ResidentDirectory&lt;br&gt;EventPublisher" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#555555;strokeColor=#A0A0A0;fontSize=11;fontColor=#FFFFFF;" parent="1" vertex="1">
+        <mxCell id="pout" value="port/out&lt;br&gt;Polls&lt;br&gt;CurrentUser&lt;br&gt;ResidentDirectory" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#555555;strokeColor=#A0A0A0;fontSize=11;fontColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="858" y="350" width="110" height="100" as="geometry" />
         </mxCell>
         <mxCell id="persist" value="Persistence&lt;br&gt;adapter (JPA)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#555555;strokeColor=#A0A0A0;fontSize=11;fontColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="1010" y="375" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="resad" value="SharedPartAdapter&lt;br&gt;(resident data)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#555555;strokeColor=#A0A0A0;fontSize=11;fontColor=#FFFFFF;" parent="1" vertex="1">
+        <mxCell id="resad" value="SharedPartAdapter&lt;br&gt;(current user, resident data)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#555555;strokeColor=#A0A0A0;fontSize=11;fontColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="780" y="95" width="170" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="notad" value="NoticesAdapter&lt;br&gt;(poll events)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#555555;strokeColor=#A0A0A0;fontSize=11;fontColor=#FFFFFF;" parent="1" vertex="1">
-          <mxGeometry x="780" y="650" width="170" height="55" as="geometry" />
-        </mxCell>
-        <mxCell id="shared" value="Shared module&lt;br&gt;(resident data)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=11;fontColor=#FFFFFF;" parent="1" vertex="1">
+        <mxCell id="shared" value="Shared module&lt;br&gt;(users, resident data)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=11;fontColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="1200" y="95" width="180" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="notices" value="Notices module" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=11;fontColor=#FFFFFF;" parent="1" vertex="1">
+        <mxCell id="notices" value="Notices module&lt;br&gt;(event listener)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=11;fontColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="1200" y="650" width="180" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="note" value="Solid arrow: calls or uses.&lt;br&gt;Dashed arrow: implements a port.&lt;br&gt;Adapters depend on ports; the domain depends on nothing." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=11;" parent="1" vertex="1">
-          <mxGeometry x="20" y="680" width="230" height="100" as="geometry" />
+        <mxCell id="note" value="Solid arrow: calls or uses.&lt;br&gt;Dashed arrow: implements a port.&lt;br&gt;Dotted arrow: an event; Notices listens to it, Polls does not depend on Notices.&lt;br&gt;Solid and dashed arrows point inwards: adapters depend on ports, the domain depends on nothing." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="20" y="640" width="230" height="140" as="geometry" />
         </mxCell>
         <mxCell id="db" value="PostgreSQL" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;size=12;fillColor=#7F6000;strokeColor=#A0A0A0;fontSize=12;fontColor=#FFFFFF;" parent="1" vertex="1">
           <mxGeometry x="1210" y="360" width="120" height="80" as="geometry" />
@@ -74,22 +71,16 @@
         <mxCell id="e6" value="implements" style="endArrow=block;endFill=0;dashed=1;exitX=0.94;exitY=1;exitDx=0;exitDy=0;entryX=0.745;entryY=0;entryDx=0;entryDy=0;html=1;rounded=0;edgeStyle=none;fontSize=10;labelBackgroundColor=#333333;fontColor=#FFFFFF;strokeColor=#A0A0A0;" parent="1" source="resad" target="pout" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e7" value="implements" style="endArrow=block;endFill=0;dashed=1;exitX=0.94;exitY=0;exitDx=0;exitDy=0;entryX=0.745;entryY=1;entryDx=0;entryDy=0;html=1;rounded=0;edgeStyle=none;fontSize=10;labelBackgroundColor=#333333;fontColor=#FFFFFF;strokeColor=#A0A0A0;" parent="1" source="notad" target="pout" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="e8" value="SQL" style="endArrow=open;endFill=0;html=1;rounded=0;edgeStyle=none;fontSize=10;labelBackgroundColor=#333333;fontColor=#FFFFFF;strokeColor=#A0A0A0;" parent="1" source="persist" target="db" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e9" value="calls" style="endArrow=open;endFill=0;html=1;rounded=0;edgeStyle=none;fontSize=10;labelBackgroundColor=#333333;fontColor=#FFFFFF;strokeColor=#A0A0A0;" parent="1" source="resad" target="shared" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e10" value="publishes PollOpened / PollClosed" style="endArrow=open;endFill=0;html=1;rounded=0;edgeStyle=none;fontSize=10;labelBackgroundColor=#333333;fontColor=#FFFFFF;strokeColor=#A0A0A0;" parent="1" source="notad" target="notices" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="rules" value="Business rules:&lt;br&gt;• One vote per resident per poll&lt;br&gt;• A poll must have at least 2 options" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#A0A0A0;fontSize=11;fontColor=#333333;align=left;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
           <mxGeometry x="470" y="735" width="460" height="55" as="geometry" />
         </mxCell>
-      </root>
+      <mxCell id="e11" value="PollOpened / PollClosed (event)" style="endArrow=open;endFill=0;dashed=1;dashPattern=1 3;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;html=1;rounded=0;edgeStyle=none;fontSize=10;labelBackgroundColor=#333333;fontColor=#FFFFFF;strokeColor=#A0A0A0;" edge="1" parent="1" source="svc" target="notices"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="700" y="677" /></Array></mxGeometry></mxCell></root>
     </mxGraphModel>
   </diagram>
 </mxfile>
