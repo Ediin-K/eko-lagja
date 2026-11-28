@@ -77,6 +77,29 @@ class AttachmentTest {
 	}
 
 	@Test
+	void fileNameHasAMaximumLength() {
+		Attachment longest = Attachment.create("a".repeat(251) + ".pdf", "application/pdf", 100, NOTICE, STORAGE_KEY, NOW);
+		assertThat(longest.getFileName()).hasSize(255);
+
+		assertThatThrownBy(() -> Attachment.create("a".repeat(252) + ".pdf", "application/pdf", 100, NOTICE, STORAGE_KEY, NOW))
+				.isInstanceOf(FileNotAllowedException.class).extracting("reason").isEqualTo(FileProblem.NAME_TOO_LONG);
+	}
+
+	@Test
+	void everyRefusalNamesItsReason() {
+		assertThatThrownBy(() -> Attachment.create(" ", "image/png", 100, NOTICE, STORAGE_KEY, NOW))
+				.extracting("reason").isEqualTo(FileProblem.NAME_MISSING);
+		assertThatThrownBy(() -> Attachment.create(FILE_NAME, "application/zip", 100, NOTICE, STORAGE_KEY, NOW))
+				.extracting("reason").isEqualTo(FileProblem.TYPE_NOT_ALLOWED);
+		assertThatThrownBy(() -> Attachment.create(FILE_NAME, null, 100, NOTICE, STORAGE_KEY, NOW))
+				.extracting("reason").isEqualTo(FileProblem.TYPE_NOT_ALLOWED);
+		assertThatThrownBy(() -> Attachment.create(FILE_NAME, "application/pdf", 0, NOTICE, STORAGE_KEY, NOW))
+				.extracting("reason").isEqualTo(FileProblem.EMPTY);
+		assertThatThrownBy(() -> Attachment.create(FILE_NAME, "application/pdf", Attachment.MAX_SIZE_BYTES + 1, NOTICE,
+				STORAGE_KEY, NOW)).extracting("reason").isEqualTo(FileProblem.TOO_LARGE);
+	}
+
+	@Test
 	void fileNameIsRequired() {
 		assertThatThrownBy(() -> Attachment.create(" ", "image/png", 100, NOTICE, STORAGE_KEY, NOW))
 				.isInstanceOf(FileNotAllowedException.class);
@@ -96,6 +119,16 @@ class AttachmentTest {
 
 		assertThat(noticeFile.belongsToNotice()).isTrue();
 		assertThat(complaintPhoto.belongsToNotice()).isFalse();
+	}
+
+	@Test
+	void restoredAttachmentKeepsItsSavedState() {
+		Attachment attachment = Attachment.restore(5L, FILE_NAME, FileType.PDF, 2048, NOW, NOTICE, STORAGE_KEY);
+
+		assertThat(attachment.getId()).isEqualTo(5L);
+		assertThat(attachment.getFileType()).isEqualTo(FileType.PDF);
+		assertThat(attachment.getOwner()).isEqualTo(NOTICE);
+		assertThat(attachment.getStorageKey()).isEqualTo(STORAGE_KEY);
 	}
 
 	@Test

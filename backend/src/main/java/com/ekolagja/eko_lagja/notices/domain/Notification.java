@@ -26,6 +26,12 @@ public class Notification {
 		return new Notification(null, recipientId, type, itemId, now, null);
 	}
 
+	public static Notification restore(Long id, Long recipientId, NotificationType type, Long itemId,
+			Instant createdAt, Instant readAt) {
+		Objects.requireNonNull(id, "id");
+		return new Notification(id, recipientId, type, itemId, createdAt, readAt);
+	}
+
 	public void markRead(Instant now) {
 		Objects.requireNonNull(now, "now");
 		if (readAt == null) {
